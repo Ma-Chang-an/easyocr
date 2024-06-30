@@ -12,12 +12,12 @@ def draw_boxes(image, bounds, color='yellow', width=2):
 
 
 def inference(img, lang):
-    reader = easyocr.Reader(lang, model_storage_directory="models", user_network_directory="user_network")
+    reader = easyocr.Reader(lang, model_storage_directory="/EasyOCR/models", user_network_directory="/EasyOCR/user_network")
     bounds = reader.readtext(img)
     im = Image.fromarray(img)
     draw_boxes(im, bounds)
-    im.save('result.jpg')
-    return ['result.jpg', bounds]
+    im.save('/EasyOCR/result.jpg')
+    return ['/EasyOCR/result.jpg', bounds]
 
 
 title = 'EasyOCR'
@@ -130,4 +130,4 @@ gr.Interface(
     article=article,
     examples=examples,
     css=css
-).launch(debug=True)
+).launch(debug=True, server_port=8000, server_name="0.0.0.0")
