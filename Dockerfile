@@ -1,4 +1,10 @@
-FROM python:3.10.9-slim
+FROM python:3.10.9-slim as download_models
+
+RUN apt update && apt install -y aria2
+
+RUN  --dir "/" --out
+
+FROM python:3.10.9-slim as server
 
 WORKDIR /EasyOCR
 
